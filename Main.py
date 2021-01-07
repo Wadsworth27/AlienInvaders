@@ -1,7 +1,8 @@
 import pygame
-import sys 
+
 from settings import Settings 
 from ship import Ship
+import game_functions as gf
 
 def run_game():
     pygame.init()
@@ -16,16 +17,9 @@ def run_game():
     
     while True: 
         #Watch for keyboard and mouse events
-        for event in pygame.event.get():
-            if event.type==pygame.QUIT:
-                sys.exit()
+        gf.check_events(ship)
         #redraw the screen on each passthrough
-        screen.fill(ai_settings.bg_color)
-        ship.blitme()
-        #most recent scren visible
-        pygame.display.flip()
-run_game()
-<<<<<<< HEAD
+        ship.update()
+        gf.update_screen(ai_settings, screen, ship)
 
-=======
->>>>>>> parent of 8dd99e5 (Revert "Added ship image and starting position")
+run_game()
